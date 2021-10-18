@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Favorite Books</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./css/stylesheet.css"/>
+        <link rel="icon" type="image/jpg" href="./img/EmeauxPic (2).jpg">
+    </head>
+    <body>
+    <a href="https://cheezychoclit08.github.io"><div class="home-button-abs"><img class="home-button-abs-img" src="./img/homeSymbolDone.jpg" alt="Home Symbol"></div></a>
+        <h1 class='header'>Random Letter Generator</h1>
+        <div class="centered" id="randLetCanvas" style="width: 90%; height: 900px; background-color: lightblue; border: black 2px solid;" ></div>
+        
+        <div class="footer"><img src="./img/githubSymbol.jpg" alt="Github logo" style="width: 55px; display: inline;"><img src="./img/netBeansSymbol.jpg" alt="Net Beans IDE logo" style="width: 55px; display: inline;"></div>
+    </body>
+    <script>
+        var alphArray = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+        while(true) {
+            for(var i = 0; i < 100; i++) {
+                var r = Math.floor(Math.random(Math.random()*25));
+                var letterIn = document.createElement("p");
+                letterIn.innerHTML = alphArray[r];
+                document.getElementById("randLetCanvas").appendChild(letterIn);
+            }
+        }
+    </script>
+</html>

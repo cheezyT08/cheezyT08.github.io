@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html> 
+	<head>
+            <title>CheezyChoclit08's Random Website</title> 
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" type="text/css" href="./css/stylesheet.css">
+            <link rel="icon" type="image/jpg" href="./img/EmeauxPic (2).jpg">
+        </head>
+	<body>
+            <a href="https://cheezychoclit08.github.io"><div class="home-button-abs"><img class="home-button-abs-img" src="./img/homeSymbolDone.jpg" alt="Home Symbol"></div></a>
+            <h1 class="header">ProccesingJS In Webpages</h1>
+            <p class="centered">Here is an example of using ProccesingJS inside of a webpage.</p>
+            <p id="canvasP" class="shadow-box" align="center"> 
+                <canvas id="mycanvas"></canvas> 
+            </p>
+            <p class="small-foot-text">Learned this from the 
+                <a href="https://www.khanacademy.org/computing/computer-programming/programming-natural-simulations" target="blank">
+                Khan Academy Advanced JavaScript: Natural Simulations course</a>, 
+                which I <strong><em>highly</em></strong> recommend!<br>
+                also where I learned JavaScript, ProccesingJS, HTML/CSS, SQL and more. Best Website Ever! <br>
+                P.S. colors work much better on PC then IOS or Android. 
+            </p> 
+            <div class="footer"><img src="./img/githubSymbol.jpg" alt="Github logo" style="width: 55px; display: inline;"><img src="./img/netBeansSymbol.jpg" alt="Net Beans IDE logo" style="width: 55px; display: inline;"></div>
+	</body>
+
+	<!-- Run all the JavaScript stuff -->
+	<!-- Include the processing.js library -->
+	<script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script> 
+
+	<script>
+		var sketchProc = function(processingInstance) {
+		with (processingInstance) {
+		size(615, 615); 
+		frameRate(30);
+
+		// ProgramCodeGoesHere
+
+var edgeRandom = function() {
+    var rx = random(0, width);
+    var ry = random(0, width);
+    var one = 1;
+    while(one === 1) {
+        if(rx > 10 && rx < (width - 10) && ry > 10 && ry < height - 10) {
+            rx = random(0, width);
+            ry = random(0, height);
+        } else {
+           return new PVector(floor(rx), floor(ry));
+        }
+    }
+};
+
+var Mover = function() {
+			this.position = edgeRandom();
+			this.velocity = new PVector(0, 0);
+			this.acceleration = new PVector(0, 0);
+			this.color = color(this.acceleration, this.position, this. velocity);
+		};
+
+		Mover.prototype.update = function() {
+			var mouse = new PVector(width / 2, height / 2);
+			var dir = PVector.sub(mouse, this.position);
+			dir.normalize();
+			dir.mult(0.25);
+			this.acceleration = dir;
+			this.velocity.add(this.acceleration);
+			this.velocity.limit(45);
+			this.position.add(this.velocity);
+			this.color = color(180, this.position.x + 20, this.position.y);
+		};
+
+		Mover.prototype.display = function() {
+			stroke(0);
+			strokeWeight(2);
+			fill(this.color);
+			ellipse(this.position.x, this.position.y, 10, 10);
+		};
+
+		Mover.prototype.checkEdges = function() {
+
+		if (this.position.x > width) {
+			this.position.x = 0;
+		} 
+		else if (this.position.x < 0) {
+			this.position.x = width;
+		}
+
+		if (this.position.y > height) {
+			this.position.y = 0;
+		} 
+		else if (this.position.y < 0) {
+			this.position.y = height;
+		}
+		};
+
+		var movers = [];
+
+		for (var i = 0; i < 700; i++) {
+			movers[i] = new Mover(); 
+		}
+        
+        draw = function() {
+			background(0, 0, 0);
+			for (var i = 0; i < movers.length; i++) {
+				movers[i].update();
+				movers[i].display(); 
+			}
+		};
+mousePressed = function() {
+    Program.restart();
+};		
+
+
+
+
+		}};
+
+		var canvas = document.getElementById("mycanvas"); 
+		var processingInstance = new Processing(canvas, sketchProc); 
+	</script>
+</html>
