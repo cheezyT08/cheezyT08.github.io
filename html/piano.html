@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Piano Note Generator</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./css/stylesheet.css"/>
+        <link rel="icon" type="image/jpg" href="./img/EmeauxPic (2).jpg">
+    </head>
+    <body>
+    <a href="https://cheezychoclit08.github.io"><div class="home-button-abs"><img class="home-button-abs-img" src="./img/homeSymbolDone.jpg" alt="Home Symbol"></div></a>
+        <h1 class='header'>Piano Note Generator</h1>
+        <div class="centered" style=" width: 60px; height: 40px; border: 2px solid black; text-align: center; margin-top: 10%;">
+            <div style="font-size: 2em;"><span id="acc" style="font-size: 0.6em;"> </span><span id="note"> </span></div>
+        </div>
+        <h1>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br></h1>
+        <div class="footer"><img src="./img/githubSymbol.jpg" alt="Github logo" style="width: 55px; display: inline;"><img src="./img/netBeansSymbol.jpg" alt="Net Beans IDE logo" style="width: 55px; display: inline;"></div>
+    </body>
+    <script>
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * max);
+        }
+        
+        var noteEl = document.getElementById(note);
+        var accEl = document.getElementById(acc);
+        
+        var nArr = ["A", "B", "C", "D", "E", "F", "G"];
+        var aArr = ["&#9837;", "&#9839"];
+        
+        function setNoteAndAcc() {
+            noteEl.textContent(nArr[getRandomInt(6)]);
+        }
+        
+        window.setInterval(setNoteAndAcc(), 1000);
+    </script>
+</html>

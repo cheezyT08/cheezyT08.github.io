@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ceaser Cipher Decoder</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./css/stylesheet.css"/>
+        <link rel="icon" type="image/jpg" href="./img/EmeauxPic (2).jpg">
+    </head>
+    <body>
+        <a href="https://cheezychoclit08.github.io"><div class="home-button-abs"><img class="home-button-abs-img" src="./img/homeSymbolDone.jpg" alt="Home Symbol"></div></a>
+        <h1 class='header'>Ceaser(Shift) Cipher Decoder</h1>
+        <label>What is the encoded message: 
+            <input type="text" id="input" size="120"> <br>
+        </label>
+    <label>What is the shift: 
+        <input type="text" id="shift" size="3" maxlength="3">
+    </label>
+        <button style="float: right; margin-right: 18%;" id="decodeButton">decode</button>
+        <div id="outputDiv">The decoded message is: </div>
+        <p class="footer centered"><a href="https://cheezychoclit08.github.io">Home Page</a></p>
+    </body>
+    <script>
+        var decodeButton = document.getElementById("decodeButton");
+        var decode = function() {
+            var input = document.getElementById("input").value;
+            console.log(input.length);
+            console.log(input.charAt(0) + 1);
+            var inArr = [];
+            for(var i = 0; i < input.length; i++) {
+                inArr[i] = input.charAt(i);
+            }
+            document.getElementById("outputDiv").textContent = "The decoded message is: " + input;
+        };
+        decodeButton.addEventListener("click", decode);
+    </script>
+</html>
