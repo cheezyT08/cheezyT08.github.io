@@ -8,7 +8,7 @@
         <link rel="icon" type="image/jpg" href="./img/EmeauxPic (2).jpg">
     </head>
     <body>
-    <a href="https://cheezychoclit08.github.io"><div class="home-button-abs"><img class="home-button-abs-img" src="./img/homeSymbolDone.jpg" alt="Home Symbol"></div></a>
+    <a href="https://cheezyT08.github.io"><div class="home-button-abs"><img class="home-button-abs-img" src="./img/homeSymbolDone.jpg" alt="Home Symbol"></div></a>
         <h1 class='header'>Random Letter Generator</h1>
         <div class="centered" id="randLetCanvas" style="width: 90%; height: 900px; background-color: lightblue; border: black 2px solid;" ></div>
         
@@ -18,8 +18,10 @@
         var alphArray = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
         while(true) {
             for(var i = 0; i < 100; i++) {
-                var r = Math.floor(Math.random(Math.random()*25));
+                var r = Math.floor(Math.random() * 27);
                 var letterIn = document.createElement("p");
+                console.log(r);
+                console.log(alphArray[r]);
                 letterIn.innerHTML = alphArray[r];
                 document.getElementById("randLetCanvas").appendChild(letterIn);
             }
