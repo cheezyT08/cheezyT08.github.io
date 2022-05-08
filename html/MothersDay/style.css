@@ -12,6 +12,7 @@ body {
 }
 
 .schpeal {
+    text-align: center;
     padding: 5% 2% 2% 2%;
     font-weight: bold;
     font-family: "Caveat", "Script MT Bold", serif;
