@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Basketball Stat Keeper</title>
+        <style>
+            .littleText {
+                font-size: 6pt;
+            }
+            
+            .centered {
+               text-align: center; 
+            }
+            
+            .warning {
+                color: rgb(209, 0, 0);
+                font-weight: bold;
+            }
+            
+            button {
+                width: 40vw;
+                height: 7vh;
+                margin-bottom: 2px;
+            }
+            
+            hr {
+                margin-top: 22px;
+                margin-bottom: 20px;
+            }
+            
+            .stat {
+                width: 5vw;
+            }
+            
+            .titleA {
+                font-family: sans-serif;
+                text-align: center;
+            }
+            
+            .titleB {
+                font-family: sans-serif;
+            }
+            
+            .groupB {
+                margin-left: 9vw;
+            }
+            
+            .statBtnGreen {
+                background-color: rgb(0, 235, 43);
+                border-style: solid;
+            }
+            
+            .statBtnRed {
+                background-color: rgb(237, 0, 0);
+                border-style: solid;
+            }
+            
+            .statBtnBlue {
+                background-color: rgb(102, 161, 255);
+                border-style: solid;
+            }
+            
+            .statBtnOrange {
+                background-color: rgb(230, 173, 0);
+                border-style: solid;
+            }
+            
+            .btnGray {
+                background-color: rgb(232, 232, 232);
+                border-style: solid;
+                width: 30vw;
+            }
+            
+            button:active {
+                background-color: black;
+                color: white;
+                border-color: lightGray;
+            }
+        </style>
+    </head>
+    <body>
+    <div class="centered">
+    
+    <hr>
+    
+        <h1 class="titleA">Basketball Stat Keeper</h1>
+        
+    <hr>
+        
+        <button class="statBtnGreen" id="2pMadeBtn">2 Pointer Made</button>
+        <button class="statBtnRed" id="2pMissedBtn">2 Pointer Missed</button><br>
+        <button class="statBtnGreen" id="3pMadeBtn">3 Pointer Made</button>
+        <button class="statBtnRed" id="3pMissedBtn">3 Pointer Missed</button><br>
+        <button class="statBtnGreen" id="ftMadeBtn">Free Thr. Made</button>
+        <button class="statBtnRed" id="ftMissedBtn">Free Thr. Missed</button><br>
+        <button class="statBtnBlue" id="astBtn">Assist</button>
+        <button class="statBtnBlue" id="offRebBtn">Off. Rebound</button><br>
+        <button class="statBtnOrange" id="blkBtn">Block</button>
+        <button class="statBtnOrange" id="defRebBtn">Def. Rebound</button>
+        <button class="statBtnOrange" id="stlBtn">Steal</button>
+        <button class="statBtnOrange" id="defBtn">Deflection</button><br>
+        <button class="statBtnRed" id="toBtn">Turnover</button>
+        <button class="statBtnRed" id="flBtn">Foul</button>
+    </div>
+    
+    <hr>
+    
+    <div class="groupB">
+        <h2 class="titleB"> Stats:</h2>
+        <div>Points: <input class="stat" type="number" id="pointsField"></div>
+        <div>Rebounds: <input class="stat" type="number" id="rebField"></div>
+        <div>Assists: <input class="stat" type="number" id="astField"></div>
+        <div>Blocks: <input class="stat" type="number" id="blkField"></div>
+        <div>Steals: <input class="stat" type="number" id="stlField"></div>
+        <div>Deflections: <input class="stat" type="number" id="defField"></div>
+        <div>2 Pointers: <input class="stat" type="number" id="twosFieldA"> / <input class="stat" type="number" id="twosFieldB"></div>
+        <div>3 Pointers: <input class="stat" type="number" id="threesFieldA"> / <input class="stat" type="number" id="threesFieldB"></div>
+        <div>Field Goals: <input class="stat" type="number" id="fgsFieldA"> / <input class="stat" type="number" id="fgsFieldB"></div>
+        <div>Free Throws: <input class="stat" type="number" id="ftsFieldA"> / <input class="stat" type="number" id="ftsFieldB"></div>
+        <div>Turnovers: <input class="stat" type="number" id="tosField"></div>
+        <div>Fouls: <input class="stat" type="number" id="flsField"></div>
+    </div>
+    
+    <hr>
+    
+    <div class="centered">
+        <button class="centered btnGray">Copy Stats</button>
+        <button class="centered btnGray">Reset Stats</button>
+    </div>
+    
+    <hr>
+    
+    <h2 class="centered warning">!*WIP*!</h2>
+    <div class="centered warning">
+        *Changing box values may break buttons*
+    </div>
+    
+    <div class="littleText centered">
+        <br>---This is an origional creation by Torin Comeaux---
+    </div>
+
+    <script>
+        var twosTaken = 0;
+        var threesTaken = 0;
+        var ftsTaken = 0;
+        var twosMade = 0;
+        var threesMade = 0;
+        var ftsMade = 0;
+        var points = 0;
+        var defRebounds = 0;
+        var offRebounds = 0;
+        var assists = 0;
+        var blocks = 0;
+        var steals = 0;
+        var deflections = 0;
+        var turnovers = 0;
+        var fouls = 0;
+        
+        var updateScreen = function() {
+            document.getElementById("pointsField").
+                setAttribute('value', points);
+            document.getElementById("rebField").
+                setAttribute('value', offRebounds+defRebounds);
+            document.getElementById("astField").
+                setAttribute('value', assists);
+            document.getElementById("blkField").
+                setAttribute('value', blocks);
+            document.getElementById("stlField").
+                setAttribute('value', steals);
+            document.getElementById("defField").
+                setAttribute('value', deflections);
+            document.getElementById("twosFieldA").
+                setAttribute('value', twosMade);
+            document.getElementById("twosFieldB").
+                setAttribute('value', twosTaken);
+            document.getElementById("threesFieldA").
+                setAttribute('value', threesMade);
+            document.getElementById("threesFieldB").
+                setAttribute('value', threesTaken);
+            document.getElementById("fgsFieldA").
+                setAttribute('value', twosMade+threesMade);
+            document.getElementById("fgsFieldB").
+                setAttribute('value', twosTaken+threesTaken);
+            document.getElementById("ftsFieldA").
+                setAttribute('value', ftsMade);
+            document.getElementById("ftsFieldB").
+                setAttribute('value', ftsTaken);
+            document.getElementById("tosField").
+                setAttribute('value', turnovers);
+            document.getElementById("flsField").
+                setAttribute('value', fouls);
+        }
+        
+        var make2Click = function() {
+            points += 2;
+            twosMade ++;
+            twosTaken ++;
+            
+            updateScreen();
+            
+            concole.log("points");
+        }
+        
+        var miss2Click = function() {
+            twosTaken ++;
+            
+            updateScreen();
+        }
+        
+        var make3Click = function() {
+            points += 3;
+            threesMade ++;
+            threesTaken ++;
+            
+            updateScreen();
+        }
+        
+        var miss3Click = function() {
+            threesTaken ++;
+            
+            updateScreen();
+        }
+        
+        var makeFtClick = function() {
+            points ++;
+            ftsMade ++;
+            ftsTaken ++;
+            
+            updateScreen();
+        }
+        
+        var missFtClick = function() {
+            ftTaken ++;
+            
+            updateScreen();
+        }
+        
+        var astClick = function() {
+            assists++;
+        }
+        
+        var offRebClick = function() {
+            offRebounds++;
+            
+            updateScreen();
+        }
+        
+        var defRebClick = function() {
+            defRebounds++;
+            
+            updateScreen();
+        }
+        
+        var blkClick = function() {
+            blocks++;
+            
+            updateScreen();
+        }
+        
+        var stlClick = function() {
+            steals++;
+            
+            updateScreen();
+        }
+        
+        var defClick = function() {
+            deflections++;
+            
+            updateScreen();
+        }
+        
+        var toClick = function() {
+            turnovers++;
+            
+            updateScreen();
+        }
+        
+        var flClick = function() {
+            fouls++;
+            
+            updateScreen();
+        }
+        
+        var twoMadeBtn = document.getElementById("2pMadeBtn");
+        var twoMissedBtn = document.getElementById("2pMissedBtn");
+        var threeMadeBtn = document.getElementById("3pMadeBtn");
+        var threeMissedBtn=document.getElementById("3pMissedBtn");
+        var ftMadeBtn = document.getElementById("ftMadeBtn");
+        var ftMissedBtn = document.getElementById("ftMissedBtn");
+        var astBtn = document.getElementById("astBtn");
+        var offRebBtn = document.getElementById("offRebBtn");
+        var defRebtn = document.getElementById("defRebBtn");
+        var blockBtn = document.getElementById("blockBtn");
+        var stealBtn = document.getElementById("stealBtn");
+        var deflectionBtn = document.getElementById("defBtn");
+        var turnoverBtn = document.getElementById("toBtn");
+        var foulBtn = document.getElementById("flBtn");
+        
+        var resetStats = function() {
+            twosTaken = 0;
+            threesTaken = 0;
+            ftsTaken = 0;
+            twosMade = 0;
+            threesMade = 0;
+            ftsMade = 0;
+            points = 0;
+            defRebounds = 0;
+            offRebounds = 0;
+            assists = 0;
+            blocks = 0;
+            steals = 0;
+            deflections = 0;
+            turnovers = 0;
+            fouls = 0;
+        }
+        
+        twoMadeBtn.addEventListener("click", make2Click);
+        twoMissedBtn.addEventListener("click", miss2Click);
+        threeMadeBtn.addEventListener("click", make3Click);
+        threeMissedBtn.addEventListener("click", miss3Click);
+        ftMadeBtn.addEventListener("click", makeFtClick);
+        ftMissedBtn.addEventListener("click", missFtClick);
+        astBtn.addEventListener("click", astClick);
+        offRebBtn.addEventListener("click", offRebClick);
+        blkBtn.addEventListener("click", blkClick);
+        defRebBtn.addEventListener("click", defRebClick);
+        stlBtn.addEventListener("click", stlClick);
+        defBtn.addEventListener("click", defClick);
+        toBtn.addEventListener("click", toClick);
+        flBtn.addEventListener("click", flClick);
+        
+        updateScreen();
+        
+    </script>
+    </body>
+</html>
